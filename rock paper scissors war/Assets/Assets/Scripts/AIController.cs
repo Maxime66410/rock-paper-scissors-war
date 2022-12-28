@@ -141,27 +141,30 @@ public class AIController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        // if collide with other AI
-        if (col.gameObject.GetComponent<AIController>())
+        if (GameManager.instance.EnableCollisionAttack)
         {
-            if(col.gameObject.GetComponent<AIController>()._team != _team)
+            // if collide with other AI
+            if (col.gameObject.GetComponent<AIController>())
             {
-                if (_team == Team.Paper)
+                if(col.gameObject.GetComponent<AIController>()._team != _team)
                 {
-                    col.gameObject.GetComponent<AIController>().SetTeam(Team.Paper);
-                    _target = null;
-                }
+                    if (_team == Team.Paper)
+                    {
+                        col.gameObject.GetComponent<AIController>().SetTeam(Team.Paper);
+                        _target = null;
+                    }
                     
-                if (_team == Team.Rock)
-                {
-                    col.gameObject.GetComponent<AIController>().SetTeam(Team.Rock);
-                    _target = null;
-                }
+                    if (_team == Team.Rock)
+                    {
+                        col.gameObject.GetComponent<AIController>().SetTeam(Team.Rock);
+                        _target = null;
+                    }
                     
-                if (_team == Team.Scissor)
-                {
-                    col.gameObject.GetComponent<AIController>().SetTeam(Team.Scissor);
-                    _target = null;
+                    if (_team == Team.Scissor)
+                    {
+                        col.gameObject.GetComponent<AIController>().SetTeam(Team.Scissor);
+                        _target = null;
+                    }
                 }
             }
         }
